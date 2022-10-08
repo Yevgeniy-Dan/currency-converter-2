@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 type InitialState = {
-  rates: {};
+  rates: { [key: string]: number };
   base: string;
+  isFilled: boolean;
 };
 
 const initialState: InitialState = {
   rates: {},
   base: "UAH",
+  isFilled: false,
 };
 
 const currenciesSlice = createSlice({
@@ -16,6 +18,7 @@ const currenciesSlice = createSlice({
   reducers: {
     replaceCurrencies(state, action) {
       state.rates = action.payload.rates;
+      state.isFilled = true;
     },
   },
 });

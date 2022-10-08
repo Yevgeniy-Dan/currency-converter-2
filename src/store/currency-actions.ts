@@ -1,4 +1,5 @@
 import { AppDispatch, RootState } from ".";
+import { converterActions } from "./converter-slice";
 import { currenciesActions } from "./currency-slice";
 
 export const fetchCurrencyData = () => {
@@ -15,18 +16,18 @@ export const fetchCurrencyData = () => {
         headers: myHeaders,
       };
 
-      const response = await fetch(
-        `https://api.apilayer.com/fixer/latest?&base=${base}`,
-        requestOptions
-      );
+      // const response = await fetch(
+      //   `https://api.apilayer.com/fixer/latest?&base=${base}`,
+      //   requestOptions
+      // );
 
-      if (!response.ok) {
-        throw new Error("Could  not fetch currency data");
-      }
+      // if (!response.ok) {
+      //   throw new Error("Could  not fetch currency data");
+      // }
 
-      const data = await response.json();
+      // const data = await response.json();
 
-      return data;
+      // return data;
     };
 
     try {
@@ -43,6 +44,43 @@ export const fetchCurrencyData = () => {
       );
     } catch (error) {
       // Make notification we couldn't get currency data or something like that
+    }
+  };
+};
+
+export const convert = () => {
+  return (dispatch: AppDispatch, getState: () => RootState) => {
+    const isCurrenciesFilled = getState().currencies.isFilled;
+
+    if (isCurrenciesFilled) {
+      const actualRates = getState().currencies.rates;
+
+      const amount = getState().converter.amount;
+
+      const baseNameCurrency = getState().converter.baseNameCurrency;
+      const convertibleNameCurrency =
+        getState().converter.convertibleNameCurrency;
+
+      const baseCurrency = actualRates[baseNameCurrency] || undefined;
+      const convertibleCurrency =
+        actualRates[convertibleNameCurrency] || undefined;
+
+      if (!baseCurrency || !convertibleCurrency) {
+        dispatch(
+          converterActions.setConvertError({
+            message: "We don't have one or two currencies you entered",
+          })
+        );
+      } else {
+        const result = (amount * convertibleCurrency) / baseCurrency;
+        dispatch(converterActions.convert({ result }));
+      }
+    } else {
+      dispatch(
+        converterActions.setConvertError({
+          message: "Server problems. Can't get currency data",
+        })
+      );
     }
   };
 };

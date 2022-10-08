@@ -73,7 +73,9 @@ export const convert = () => {
         );
       } else {
         const result = (amount * convertibleCurrency) / baseCurrency;
-        dispatch(converterActions.convert({ result }));
+        dispatch(
+          converterActions.convert({ result: Number(result.toFixed(2)) })
+        );
       }
     } else {
       dispatch(

@@ -37,12 +37,21 @@ const Converter: React.FC = () => {
     <div className={classes.form}>
       <form onSubmit={convertAmountHandler}>
         <label htmlFor="text">Currency translation text </label>
-        <input type="text" id="text" ref={converterTextInputRef} />
-        {inputError.status === "failed" && <label>{inputError.message}</label>}
+        <input
+          type="text"
+          id="text"
+          ref={converterTextInputRef}
+          placeholder="15 usd in uah"
+        />
+        {inputError.status === "failed" && (
+          <label className={classes.error}>{inputError.message}</label>
+        )}
         <button>Result</button>
       </form>
       <div className={classes.resultBox}>
-        {convertError.status === "failed" && <p>{convertError.message}</p>}
+        {convertError.status === "failed" && (
+          <p className={classes.error}>{convertError.message}</p>
+        )}
         <h2>{result}</h2>
       </div>
     </div>

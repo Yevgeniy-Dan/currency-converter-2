@@ -40,6 +40,11 @@ const converterSlice = createSlice({
         message: "",
       };
 
+      state.validationStatus = {
+        status: "",
+        message: "",
+      };
+
       const input = action.payload.input;
 
       const inputArr = input.trim().split(" ", 4);

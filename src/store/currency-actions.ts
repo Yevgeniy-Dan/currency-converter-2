@@ -16,30 +16,35 @@ export const fetchCurrencyData = () => {
         headers: myHeaders,
       };
 
-      // const response = await fetch(
-      //   `https://api.apilayer.com/fixer/latest?&base=${base}`,
-      //   requestOptions
-      // );
+      const response = await fetch(
+        `https://api.apilayer.com/fixer/latest?&base=${base}`,
+        requestOptions
+      );
 
-      // if (!response.ok) {
-      //   throw new Error("Could  not fetch currency data");
-      // }
+      if (!response.ok) {
+        throw new Error("Could  not fetch currency data");
+      }
 
-      // const data = await response.json();
+      const data = await response.json();
 
-      // return data;
+      return data;
     };
 
     try {
-      // const currencyData = await fetchData();
+      const currencyData = await fetchData();
       dispatch(
         currenciesActions.replaceCurrencies({
-          // rates: currencyData.rates,
-          rates: {
-            EUR: 0.813399,
-            GBP: 0.72007,
-            JPY: 107.346001,
-          },
+          rates: currencyData.rates,
+          // rates: {
+          //   EUR: 0.813399,
+          //   GBP: 0.72007,
+          //   JPY: 107.346001,
+          // },
+        })
+      );
+      dispatch(
+        currenciesActions.baseChange({
+          base,
         })
       );
     } catch (error) {

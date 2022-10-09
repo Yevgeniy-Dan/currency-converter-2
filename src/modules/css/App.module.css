@@ -1,6 +1,6 @@
 /* Converter Input */
 
-.form {
+.mainContainer {
   width: 40rem;
   margin: 2rem auto;
 }
@@ -61,18 +61,25 @@
 .error {
   color: #a52a2a;
 }
-.nextPageBtnContainer {
+.nextPageBtnContainer,
+.prevPageBtnContainer {
   display: flex;
+  padding: 1rem 0;
+}
+
+.nextPageBtnContainer {
   justify-content: flex-end;
 }
 
-.nextPageBtnContainer a {
+.nextPageBtnContainer a,
+.prevPageBtnContainer a {
   color: #494844;
   text-transform: uppercase;
   font-size: 1.1rem;
   text-decoration: none;
 }
 
-.nextPageBtnContainer a:hover {
+.nextPageBtnContainer a:hover,
+.prevPageBtnContainer a:hover {
   color: #ebc002;
 }

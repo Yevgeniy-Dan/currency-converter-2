@@ -3,7 +3,7 @@ import React, { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { converterActions } from "../store/converter-slice";
 import { convert } from "../store/currency-actions";
-import classes from "./Converter.module.css";
+import classes from "../modules/css/App.module.css";
 
 const Converter: React.FC = () => {
   const dispatch = useAppDispatch();

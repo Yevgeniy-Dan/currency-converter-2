@@ -10,7 +10,7 @@ type InitialState = {
 const initialState: InitialState = {
   rates: {},
   ratesByBaseCurrency: {},
-  base: "GBP",
+  base: "UAH",
   isFilled: false,
 };
 
@@ -32,7 +32,7 @@ const currenciesSlice = createSlice({
         })
         .forEach(([currency, rate]) => {
           const newRate = (1 * state.rates[state.base]) / rate;
-          newRates[currency] = newRate;
+          newRates[currency] = Number(newRate.toFixed(4));
         });
 
       state.ratesByBaseCurrency = newRates;

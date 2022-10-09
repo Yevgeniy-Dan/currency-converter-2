@@ -1,14 +1,13 @@
 import CurrencyHeader from "../components/CurrencyHeader";
 import CurrecncyList from "../components/CurrencyList";
+import { Container } from "react-bootstrap";
 
-const CurrecncyListPage: React.FC<
-  React.PropsWithChildren<{ rates: { [key: string]: number } }>
-> = ({ rates }) => {
+const CurrecncyListPage: React.FC = () => {
   return (
-    <>
-      <CurrencyHeader rates={rates} />
+    <Container className="p-3">
+      <CurrencyHeader />
       <CurrecncyList />
-    </>
+    </Container>
   );
 };
 

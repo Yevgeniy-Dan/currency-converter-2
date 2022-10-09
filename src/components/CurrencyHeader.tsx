@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 
 import { Container, Form } from "react-bootstrap";
 import classes from "../modules/css/App.module.css";
+import { fetchCurrencyData } from "../store/currency-actions";
 
 const CurrencyHeader: React.FC = () => {
   const rates = useAppSelector((state) => state.currencies.rates);
@@ -32,6 +33,12 @@ const CurrencyHeader: React.FC = () => {
     );
   };
 
+  const updateRateHandler = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    dispatch(fetchCurrencyData());
+  };
+
   return (
     <Container className="d-flex flex-column justify-content-center">
       <h1 className="text-center">Currency List</h1>
@@ -49,10 +56,15 @@ const CurrencyHeader: React.FC = () => {
             ))}
           </Form.Select>
         </div>
-        <div className={classes.prevPageBtnContainer}>
+        <div
+          className={`${classes.prevPageBtnContainer} ${classes.form} d-flex justify-content-between align-items-center`}
+        >
           <Link to="/converter" state={{}}>
             Previous Page
           </Link>
+          <button className={classes.updateRateBtn} onClick={updateRateHandler}>
+            Update Rate
+          </button>
         </div>
       </div>
     </Container>

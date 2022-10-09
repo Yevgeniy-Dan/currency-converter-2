@@ -31,7 +31,7 @@
   font: inherit;
   background-color: #ebb002;
   border: 1px solid #ebb002;
-  color: #201d0f;
+  color: #f7f5ef;
   padding: 0.5rem 1.5rem;
   border-radius: 4px;
   cursor: pointer;
@@ -41,6 +41,11 @@
 .form button:active {
   background-color: #ebc002;
   border-color: #ebc002;
+}
+
+.updateRateBtn {
+  border-color: #6495ed !important;
+  background-color: #6495ed !important;
 }
 
 /* Converter Result */

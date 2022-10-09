@@ -5,6 +5,10 @@ type InitialState = {
   ratesByBaseCurrency: { [key: string]: number };
   base: string;
   isFilled: boolean;
+  updateRate: {
+    isUpdated: boolean;
+    errorUpdating: boolean;
+  };
 };
 
 const initialState: InitialState = {
@@ -12,6 +16,10 @@ const initialState: InitialState = {
   ratesByBaseCurrency: {},
   base: "UAH",
   isFilled: false,
+  updateRate: {
+    isUpdated: false,
+    errorUpdating: false,
+  },
 };
 
 const currenciesSlice = createSlice({
@@ -36,6 +44,13 @@ const currenciesSlice = createSlice({
         });
 
       state.ratesByBaseCurrency = newRates;
+    },
+    showUpdateNotification(
+      state,
+      action: PayloadAction<{ success: boolean; error: boolean }>
+    ) {
+      state.updateRate.isUpdated = action.payload.success;
+      state.updateRate.errorUpdating = action.payload.error;
     },
   },
 });

@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from "react";
 
 import { useAppDispatch, useAppSelector } from "../hooks";
 import { converterActions } from "../store/converter-slice";
-import { convert } from "../store/currency-actions";
+import { convert, fetchCurrencyData } from "../store/currency-actions";
 import classes from "../modules/css/App.module.css";
 
 const Converter: React.FC = () => {
@@ -35,6 +35,12 @@ const Converter: React.FC = () => {
     );
   };
 
+  const updateRateHandler = (event: React.FormEvent) => {
+    event.preventDefault();
+
+    dispatch(fetchCurrencyData());
+  };
+
   return (
     <div>
       <form onSubmit={convertAmountHandler}>
@@ -48,7 +54,12 @@ const Converter: React.FC = () => {
         {inputError.status === "failed" && (
           <label className={classes.error}>{inputError.message}</label>
         )}
-        <button>Result</button>
+        <div className="d-flex justify-content-between">
+          <button>Result</button>
+          <button className={classes.updateRateBtn} onClick={updateRateHandler}>
+            Update Rate
+          </button>
+        </div>
       </form>
       <div className={classes.resultBox}>
         {convertStatus.status === "failed" && (

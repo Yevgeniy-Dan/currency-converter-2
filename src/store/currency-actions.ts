@@ -35,11 +35,6 @@ export const fetchCurrencyData = () => {
       dispatch(
         currenciesActions.replaceCurrencies({
           rates: currencyData.rates,
-          // rates: {
-          //   EUR: 0.813399,
-          //   GBP: 0.72007,
-          //   JPY: 107.346001,
-          // },
         })
       );
       dispatch(
@@ -48,7 +43,12 @@ export const fetchCurrencyData = () => {
         })
       );
     } catch (error) {
-      // Make notification we couldn't get currency data or something like that
+      dispatch(
+        currenciesActions.showUpdateNotification({
+          success: false,
+          error: true,
+        })
+      );
     }
   };
 };

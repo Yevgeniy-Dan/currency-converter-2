@@ -79,9 +79,12 @@ const converterSlice = createSlice({
         message: "Your amount has been converted",
       };
     },
-    setConvertStatus(state, action: PayloadAction<{ message: string }>) {
+    setConvertStatus(
+      state,
+      action: PayloadAction<{ status: string; message: string }>
+    ) {
       state.convertStatus = {
-        status: "failed",
+        status: action.payload.status,
         message: action.payload.message,
       };
     },

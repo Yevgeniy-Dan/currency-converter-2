@@ -68,6 +68,7 @@ export const convert = () => {
       if (!baseCurrency || !convertibleCurrency) {
         dispatch(
           converterActions.setConvertStatus({
+            status: "failed",
             message: "We don't have one or two currencies you entered",
           })
         );
@@ -80,6 +81,7 @@ export const convert = () => {
     } else {
       dispatch(
         converterActions.setConvertStatus({
+          status: "failed",
           message: "Server problems. Can't get currency data",
         })
       );

@@ -9,7 +9,9 @@ const ConverterPage: React.FC = () => {
     <div className={classes.form}>
       <Converter />
       <div className={classes.nextPageBtnContainer}>
-        <Link to="/currency-list">Next Page</Link>
+        <Link to="/currency-list" state={{}}>
+          Next Page
+        </Link>
       </div>
     </div>
   );

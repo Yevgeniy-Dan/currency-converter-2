@@ -67,7 +67,7 @@ export const convert = () => {
 
       if (!baseCurrency || !convertibleCurrency) {
         dispatch(
-          converterActions.setConvertError({
+          converterActions.setConvertStatus({
             message: "We don't have one or two currencies you entered",
           })
         );
@@ -79,7 +79,7 @@ export const convert = () => {
       }
     } else {
       dispatch(
-        converterActions.setConvertError({
+        converterActions.setConvertStatus({
           message: "Server problems. Can't get currency data",
         })
       );

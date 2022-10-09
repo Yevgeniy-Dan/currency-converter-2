@@ -1,7 +1,11 @@
 import { useEffect } from "react";
-import Converter from "./components/Converter";
 import { useAppDispatch } from "./hooks";
 import { fetchCurrencyData } from "./store/currency-actions";
+
+import { Routes, Route, Navigate } from "react-router-dom";
+import ConverterPage from "./pages/ConverterPage";
+import CurrecncyList from "./pages/CurrencyList";
+import RootLayout from "./pages/RootLayout";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -11,9 +15,13 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div>
-      <Converter />
-    </div>
+    <RootLayout>
+      <Routes>
+        <Route path="/" element={<Navigate replace to="converter" />} />
+        <Route path="/converter" element={<ConverterPage />} />
+        <Route path="/currency-list" element={<CurrecncyList />} />
+      </Routes>
+    </RootLayout>
   );
 }
 

@@ -10,7 +10,9 @@ const Converter: React.FC = () => {
   const inputError = useAppSelector(
     (state) => state.converter.validationStatus
   );
-  const convertError = useAppSelector((state) => state.converter.convertStatus);
+  const convertStatus = useAppSelector(
+    (state) => state.converter.convertStatus
+  );
   const result = useAppSelector((state) => state.converter.result);
 
   useEffect(() => {
@@ -34,7 +36,7 @@ const Converter: React.FC = () => {
   };
 
   return (
-    <div className={classes.form}>
+    <div>
       <form onSubmit={convertAmountHandler}>
         <label htmlFor="text">Currency translation text </label>
         <input
@@ -49,10 +51,10 @@ const Converter: React.FC = () => {
         <button>Result</button>
       </form>
       <div className={classes.resultBox}>
-        {convertError.status === "failed" && (
-          <p className={classes.error}>{convertError.message}</p>
+        {convertStatus.status === "failed" && (
+          <p className={classes.error}>{convertStatus.message}</p>
         )}
-        <h2>{result}</h2>
+        {convertStatus.status === "success" && <h2>{result}</h2>}
       </div>
     </div>
   );

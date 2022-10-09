@@ -47,9 +47,9 @@ const converterSlice = createSlice({
 
       const input = action.payload.input;
 
-      const inputArr = input.trim().split(" ", 4);
+      const inputArr = input.trim().split(" ");
 
-      if (inputArr.length < 4) {
+      if (inputArr.length !== 4) {
         state.validationStatus = {
           status: "failed",
           message: "Enter valid text",
@@ -68,18 +68,18 @@ const converterSlice = createSlice({
         state.convertibleNameCurrency = inputArr[3].toUpperCase();
         state.validationStatus = {
           status: "success",
-          message: "Your amount has been converted",
+          message: "Validation passed",
         };
       }
     },
     convert(state, action: PayloadAction<{ result: number }>) {
       state.result = action.payload.result;
       state.convertStatus = {
-        status: "",
-        message: "",
+        status: "success",
+        message: "Your amount has been converted",
       };
     },
-    setConvertError(state, action: PayloadAction<{ message: string }>) {
+    setConvertStatus(state, action: PayloadAction<{ message: string }>) {
       state.convertStatus = {
         status: "failed",
         message: action.payload.message,

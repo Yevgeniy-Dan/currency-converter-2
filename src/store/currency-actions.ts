@@ -17,7 +17,7 @@ export const fetchCurrencyData = () => {
       };
 
       const response = await fetch(
-        `https://api.apilayer.com/fixer/latest?&base=${base}`,
+        `https://api.apilayer.com/exchangerates_data/latest?&base=${base}`,
         requestOptions
       );
 

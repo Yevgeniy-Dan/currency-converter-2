@@ -7,13 +7,15 @@ const CurrencyList: React.FC = () => {
 
   return (
     <Container>
-      <Row>
+      <Row className="text-center">
         {Object.entries(rates).map(([currency, rate]) => {
           return (
             <Col xl={4} lg={4} md={6} sm={12} key={currency + rate}>
-              <p>
-                1 {currency} = {rate} {base}
-              </p>
+              <div>
+                <p>
+                  1 {currency} = {rate} {base}
+                </p>
+              </div>
             </Col>
           );
         })}
